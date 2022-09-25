@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard', [DashboardController::class , 'index'])->name('dashboard');
     Route::resource('/posts' , PostController::class);
+    Route::post('/comments' , [CommentController::class , 'store'])->name('comments.store');
 });
 
 require __DIR__.'/auth.php';
